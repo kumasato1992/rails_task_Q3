@@ -7,18 +7,18 @@ namespace :import_csv do
     CSV.foreach(path, headers: true) do |row|
       list << row.to_h
     end
-    p "インポート処理を開始".red
+    puts "インポート処理を開始"
     begin
       User.transaction do
         User.create!(list)
       end
-      p "インポート完了！！".green
+      puts "インポート完了！！".green
     rescue => e
-      p "#{e.class}: #{e.message}"
-      p "-------------------------"
-      p e.backtrace
-      p "-------------------------"
-      p "インポートに失敗"
+      puts "#{e.class}: #{e.message}"
+      puts "-------------------------"
+      puts e.backtrace
+      puts "-------------------------"
+      puts "インポートに失敗"
     end
   end
 end
